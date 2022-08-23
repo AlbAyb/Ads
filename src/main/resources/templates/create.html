@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>create</title>
+</head>
+<body>
+
+<form th:action="@{/ads/create}" th:method="POST" th:object="${ads}">
+    <table>
+
+        <tr>
+            <td>Название</td>
+            <td><input type="text" th:field="*{title}"></td>
+        </tr>
+        <tr>
+            <td>Цена</td>
+            <td><input type="number" th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Описание</td>
+            <td><input type="text" th:field="*{description}"></td>
+        </tr>
+        <tr>
+            <td>Категория</td>
+            <td>
+                <select th:field="*{name}">
+                    <option th:each="task : ${categories}"
+                            th:value="${task.id}"
+                            th:text="${task.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn btn-success">Добавить</button>
+            </td>
+        </tr>
+
+
+    </table>
+</form>
+</body>
+</html>

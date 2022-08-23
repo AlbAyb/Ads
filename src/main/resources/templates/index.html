@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ads</title>
+</head>
+<body>
+
+<h3><td  th:text="${#authorization.getAuthentication().name}"/></h3>
+
+
+<div>
+    <table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>Категория</th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Автор</th>
+            <th>Посмотреть</th>
+        </tr>
+        <tr th:each="el : ${ads}">
+            <td th:text="${el.name}"/>
+            <td th:text="${el.title}"/>
+            <td th:text="${el.price}"/>
+            <td th:text="${el.username}"/>
+            <td>
+                <a th:href="@{/ads/edit/{id}(id=${el.getId()})}">views</a>
+            </td>
+        </tr>
+
+    </table>
+</div>
+<br>
+<div>
+    <div class="my-2 my-lg-0">
+        <ul class="navbar-nav"
+            th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : ${false}">
+            <li class="nav-item pull-sm-0">
+                    <span th:case="${false}">
+<!--                            <a class="nav-link btn btn-outline-primary" href="/login">Войдите</a>-->
+                        <form th:action="@{/login}" target="_blank">
+                            <input type="submit" value="Вход"/>
+                        </form>
+                        <br>
+                        <form th:action="@{/registration}" target="_blank">
+                        <button>Регистрация</button>
+    </form>
+                    </span>
+                <span th:case="${true}">
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Выход"/>
+                            <br>
+                            <br>
+                            <h3><a th:if="${#authorization.getAuthentication().name != 'ADMIN'}" href="/me">Личный кабинет</a></h3>
+                            <h3><a th:if="${#authorization.getAuthentication().name == 'ADMIN'}" href="/admin">Личный кабинет</a></h3>
+
+
+                        </form>
+                    </span>
+
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+</body>
+</html>

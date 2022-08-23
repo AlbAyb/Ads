@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>мои сообщения</title>
+</head>
+<body>
+<div>
+    <table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>Автор</th>
+            <th>Посмотреть</th>
+        </tr>
+        <tr th:each="el : ${all}">
+
+            <td th:text="${el.getUsername()}"/>
+<!--            <td th:text="${el.getCount()}"/>-->
+
+            <td >
+                <a th:href="@{/meMessageId/{id}(id=${el.getId()})}">views</a>
+            </td>
+<!--            <td>-->
+<!--                <form method="post" th:action="@{/messageId/{id}(id=${el.getId()})}">-->
+<!--                    <input type="submit" value="Удалить"/>-->
+<!--                </form>-->
+<!--            </td>-->
+            <td th:if="${el.getUsername() == 'ADMIN'}" bgcolor="#c71585"/>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <a th:if="${#authorization.getAuthentication().name != 'ADMIN'}" href="/me">Личный кабинет</a>
+    <a th:if="${#authorization.getAuthentication().name == 'ADMIN'}" href="/admin">Личный кабинет</a>
+</div>
+</body>
+</html>

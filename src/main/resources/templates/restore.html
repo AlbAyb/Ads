@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>restore</title>
+</head>
+<body>
+    <table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Категория</th>
+            <th>Цена</th>
+            <th>Восстановить</th>
+            <!--            <th>Дата создания</th>-->
+        </tr>
+        <tr th:each="el : ${ads}">
+            <td th:text="${el.getTitle()}"/>
+            <td th:text="${el.getDescription()}"/>
+            <td th:text="${el.getName()}"/>
+            <td th:text="${el.getPrice()}"/>
+            <td>
+                <form method="post" th:action="@{/me/ads/restore/{id}(id=${el.getId()})}">
+                    <input type="submit" value="Восстановить"/>
+                </form>
+            </td>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

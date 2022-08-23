@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>auth_index</title>
+</head>
+<body>
+<div>
+    <table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>Категория</th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Автор</th>
+            <th>Посмотреть</th>
+        </tr>
+        <tr th:each="el : ${ads}">
+            <td th:text="${el.name}"/>
+            <td th:text="${el.title}"/>
+            <td th:text="${el.price}"/>
+            <td th:text="${el.username}"/>
+            <td>
+                <a th:href="@{/ads/edit/{id}(id=${el.getId()})}">views</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+<div>
+    <br>
+    <form action="/me" target="_blank">
+        <button>Личный кабинет</button>
+    </form>
+    <br>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+</div>
+</body>
+</html>

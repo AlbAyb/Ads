@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>views</title>
+</head>
+<body>
+<table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+    <tr>
+        <th>Название</th>
+        <th>Категория</th>
+        <th>Описание</th>
+        <th>Цена</th>
+        <th>Автор</th>
+    </tr>
+    <!--        <tr th:each="el : ${all}">-->
+    <td th:text="${views.getTitle()}"/>
+    <td th:text="${views.getName()}"/>
+    <td th:text="${views.getDescription()}"/>
+    <td th:text="${views.getPrice()}"/>
+    <td th:text="${views.getUsername()}"/>
+    </tr>
+    <br>
+    <table>
+    <form th:action="@{/message/{id}(id=${views.getUser_id()})}" th:method="POST" th:object="${add}">
+        <tr>
+            <td>Введите сообщение</td>
+            <td><input type="text" th:field="*{text}"></td>
+        </tr>
+        <br>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn btn-success">Отправить</button>
+            </td>
+        </tr>
+    </form>
+    </table>
+</table>
+<br>
+
+<br>
+<form action="/ads" target="_blank">
+    <button>Главная</button>
+</form>
+<br>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выход"/>
+</form>
+</body>
+</html>

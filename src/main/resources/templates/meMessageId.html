@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>messageId</title>
+</head>
+<body>
+<h2 th:text="${user.getUsername()}"/>
+<div>
+    <table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>Сообщение</th>
+        </tr>
+        <tr th:each="el : ${text}">
+<!--            <td th:text="${el.getId()}"/>-->
+            <td th:text="${el.getText()}"/>
+            <td th:text="${el.getSender()}"/>
+<!--            <td th:if="${#authorization.getAuthentication().name} == ${el.getSender()}" th:text="${el.getSender()}"/>-->
+<!--            <td th:text="${el.getResiver()}"/>-->
+            <td th:if="${el.getSender() == 'ADMIN'}" bgcolor="#c71585"/>
+            <td>
+                <form  th:action="@{/meMessageId/delete/{id}/{me}(id=${el.getId()}, me=${user.getId()})}" method="post" >
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+        </tr>
+
+        <form th:action="@{/message/{id}(id=${user.getId()})}" th:method="POST" th:object="${add}">
+
+            <td>Введите сообщение</td>
+            <td><input type="text" th:field="*{text}"></td>
+            <br>
+                        <td colspan="2">
+                <button type="submit" class="btn btn-success">Отправить</button>
+            </td>
+
+        </form>
+
+    </table>
+    <br>
+    <form action="/meMessage" target="_blank">
+        <button>Сообщения</button>
+    </form>
+    <br>
+    <a th:if="${#authorization.getAuthentication().name != 'ADMIN'}" href="/me">Личный кабинет</a>
+    <a th:if="${#authorization.getAuthentication().name == 'ADMIN'}" href="/admin">Личный кабинет</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+</head>
+<body>
+<div>
+    <table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>id</th>
+            <th>Логин</th>
+            <th>Роль</th>
+            <th>Кол-во объявлений</th>
+            <th>Доступ</th>
+            <th>Подробнее</th>
+            <th>Заблкировать</th>
+            <th>Разблкировать</th>
+            <th>Сообщение</th>
+        </tr>
+
+        <tr th:each="el : ${person}" >
+            <td th:text="${el.getId()}"/>
+            <td th:text="${el.getUsername}"/>
+            <td th:text="${el.getRole()}"/>
+            <td th:text="${el.getUserId}"/>
+            <td  th:text="${el.getRemoved()}"/>
+
+            <td>
+                <a th:href="@{/user/{id}(id=${el.getId()})}">views</a>
+            </td>
+            <td>
+                <form method="post" th:action="@{/admin/user/{id}(id=${el.getId()})}">
+                    <input type="submit" value="Заблокировать"/>
+                </form>
+            </td>
+            <td>
+                <form method="post" th:action="@{/admin/{id}(id=${el.getId()})}">
+                    <input type="submit" value="Разблокировать"/>
+                </form>
+            </td>
+            <td th:if="${el.getRemoved} == 't'" bgcolor="#ff4500"/>
+
+            <td >
+                <a th:href="@{/meMessageId/{id}(id=${el.getId()})}">Сообщение</a>
+            </td>
+
+        </tr>
+    </table>
+    <br>
+    <form th:action="@{/ads}" target="_blank">
+        <button>Главная</button>
+    </form>
+    <br>
+    <form action="/meMessage" target="_blank">
+        <button>Сообщения</button>
+    </form>
+</div>
+</body>
+</html>

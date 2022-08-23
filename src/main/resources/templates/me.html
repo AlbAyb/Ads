@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>me</title>
+</head>
+<body>
+<div>
+    <table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>Логин</th>
+            <th>Роль</th>
+        </tr>
+        <tr>
+            <td th:text="${person.username}"/>
+            <td th:text="${person.role}"/>
+        </tr>
+    </table>
+    <br>
+    <table border="2" bordercolor="#000000" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+<!--            <th>Категория</th>-->
+            <th>Цена</th>
+            <th>Дата создания</th>
+<!--            <th>Сообщение</th>-->
+            <th>Удалить</th>
+            <th>Редактировать</th>
+        </tr>
+        <tr th:each="el : ${ads}">
+            <td th:text="${el.getTitle()}"/>
+            <td th:text="${el.getDescription()}"/>
+            <td th:text="${el.getPrice()}"/>
+            <td th:text="${el.getCreated()}"/>
+<!--            <td th:text="${el.getUsername()}"/>-->
+<!--            <td th:text="${el.getMess()}"/>-->
+            <td>
+                <form method="post" th:action="@{/me/ads/{id}(id=${el.getId()})}">
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/updateAds/{id}(id=${el.getId()})}" >
+                    <button>Редактировать</button>
+                </form>
+<!--                <a th:href="@{/updateAds/{id}(id=${el.getId()})}">Редактировать</a>-->
+            </td>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Выход"/>
+    </form>
+    <br>
+    <form action="/ads" target="_blank">
+        <button>Главная</button>
+    </form>
+    <br>
+    <form action="ads/create" target="_blank">
+        <button>Подать обьявление</button>
+    </form>
+    <br>
+    <form action="me/ads/restore" target="_blank">
+        <button>Восттановить объявление</button>
+    </form>
+    <br>
+    <form action="/meMessage" target="_blank">
+        <button>Сообщения</button>
+    </form>
+</div>
+</body>
+</html>
