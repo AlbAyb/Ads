@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-//@NoArgsConstructor
-//@Service
 public class AdsManager {
 
     private NamedParameterJdbcTemplate template;

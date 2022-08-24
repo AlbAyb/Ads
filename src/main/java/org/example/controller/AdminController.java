@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.manager.AdminManager;
+import org.example.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AdminController {
     private AdminManager manager;
+    private UserManager userManager;
 
     @Autowired
-    public AdminController(AdminManager manager) {
+    public AdminController(AdminManager manager, UserManager userManager) {
         this.manager = manager;
+        this.userManager = userManager;
     }
 
 
@@ -35,5 +38,11 @@ public class AdminController {
     public String restoreUser(@PathVariable("id") long id) {
         manager.restoreUser(id);
         return "redirect:/admin";
+    }
+
+        @GetMapping("/user/{id}")
+    public String getById(@PathVariable("id") long id, Model model) {
+        model.addAttribute("user", userManager.getByIdUserAds(id));
+        return "user";
     }
 }

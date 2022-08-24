@@ -40,17 +40,6 @@ public class MessageController {
     //http://localhost:8080/ads/edit/1
     @GetMapping("/meMessageId/{id}")
     public String getById(@PathVariable("id") long id, Model model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-//        Person person = personDetails.getPerson();
-//        List<MessageGetByIdResponseDTO> biId = manager.getBiId(id);
-//        for (MessageGetByIdResponseDTO dto : biId) {
-//            String resiver = dto.getResiver();
-//            if (dto.getUser_add() != person.getId()) {
-//                resiver = dto.getSender();
-//            }
-//
-//        }
         model.addAttribute("text", manager.getBiId(id));
         model.addAttribute("add", new MessageCreateRequestDTO());
         model.addAttribute("user", userManager.userGetById(id));
@@ -66,12 +55,6 @@ public class MessageController {
         return "redirect:/meMessageId/{id}";
     }
 
-//    @PostMapping("/meMessageId/delete/{id}/{me}")
-//    public String delete(@PathVariable("id") long id) {
-//        manager.delete(id);
-//        return "redirect:/meMessageId/{me}";
-//
-//    }
 
     @PostMapping("/meMessageId/delete/{id}/{me}")
     public String delete(@PathVariable("id") long id) {

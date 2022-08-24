@@ -46,12 +46,6 @@ public class UserController {
     }
 
 
-    @GetMapping("/user/{id}")
-    public String getById(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", manager.getByIdUserAds(id));
-        return "user";
-    }
-
     //http://localhost:8080/me
     @GetMapping("/me")
     public String me(Model model) {
