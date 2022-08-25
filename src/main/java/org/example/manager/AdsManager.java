@@ -1,6 +1,5 @@
 package org.example.manager;
 
-import lombok.NoArgsConstructor;
 import org.example.dto.*;
 import org.example.model.Person;
 import org.example.security.PersonDetails;
@@ -11,7 +10,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -41,7 +39,6 @@ public class AdsManager {
                 Map.of(
                         "limit", limit,
                         "offset", offset
-
                 ),
                 BeanPropertyRowMapper.newInstance(AdsGetAllResponseDTO.class)
         );
@@ -60,7 +57,6 @@ public class AdsManager {
                                                
                         """,
                 Map.of("id", id),
-
                 BeanPropertyRowMapper.newInstance(AdsGetByIdResponseDTO.class)
         );
     }

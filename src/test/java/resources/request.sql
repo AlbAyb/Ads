@@ -494,8 +494,8 @@ SELECT m.id, m.text, u1.username receiver
 FROM message m
          JOIN users u1 on m.user_add = u1.id
          JOIN users u2 on m.user_id = u2.id
-WHERE m.user_add = 2 AND outgoing = true
-   OR m.user_id = 2 AND outgoing = false
+WHERE m.user_add = 3 AND m.user_id = 1 AND outgoing = true
+   OR m.user_id = 3 AND m.user_add = 1 AND outgoing = false
 ORDER BY created;
 
 

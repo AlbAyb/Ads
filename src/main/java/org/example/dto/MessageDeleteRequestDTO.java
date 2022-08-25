@@ -9,8 +9,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MessageDeleteRequestDTO {
     private long id;
-    private long user_id;
-    private long user_add;
-    private long deleted;
-    private boolean removed;
 }

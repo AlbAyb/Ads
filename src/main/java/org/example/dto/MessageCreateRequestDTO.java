@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class MessageCreateRequestDTO {
-    private long deleted;
+//    private long deleted;
     private String text;
     private long user_id;
     private long user_add;

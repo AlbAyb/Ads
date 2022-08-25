@@ -97,11 +97,13 @@ public class MessageManager {
                         SELECT m.id, m.user_add, m.text, u.username sender FROM message m
                         JOIN users u on m.user_add = u.id
                         JOIN users u2 on u2.id = m.user_id
-                        WHERE user_add = :id AND outgoing = true OR user_id = :id AND outgoing = false
+                        WHERE user_add = :user_id AND user_id = :id AND outgoing = true 
+                        OR user_id = :user_id AND user_add = :id AND outgoing = false
                         ORDER BY created;
                         """,
 
-                Map.of("id", person.getId()
+                Map.of("user_id", person.getId(),
+                        "id", id
                 ),
                 BeanPropertyRowMapper.newInstance(MessageGetByIdResponseDTO.class)
         );

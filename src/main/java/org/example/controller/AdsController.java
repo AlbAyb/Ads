@@ -20,12 +20,6 @@ public class AdsController {
     private CategoriesManager categoriesManager;
     private UserManager userManager;
 
-
-//    @GetMapping ("/ads")
-//    public List<AdsGetAllResponseDTO> getAll(long limit, long offset) {
-//        return manager.getAll(50,0);
-//    }
-
     //http://localhost:8080/ads?limit=50&offset=0
     @GetMapping("/ads")
     public String getAll(Model model) {

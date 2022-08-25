@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdsCreateResponseDTO {
-    //private long id;
     private String title;
     private long price;
     private String description;

@@ -14,6 +14,4 @@ public class AdsUpdateRequestDTO {
     private String title;
     private long price;
     private String description;
-//    private int name; // categories
-//    private int username; // users
 }

@@ -51,7 +51,6 @@ public class UserManager {
                 Map.of("username", dto.getUsername(),
                         "password", encodePassword,
                         "role", role),
-//                new Object[]{dto.getUsername(), encodePassword, role},
                 BeanPropertyRowMapper.newInstance(Person.class)
         );
     }
@@ -66,7 +65,6 @@ public class UserManager {
                         WHERE user_id = :user_id
                             """,
                 Map.of("user_id", id),
-//                new Object[]{id},
                 BeanPropertyRowMapper.newInstance(UserGetByIdResponseDTO.class)
         );
 
@@ -87,7 +85,6 @@ public class UserManager {
                         WHERE user_id = :user_id AND ads.removed = false AND u.removed = false 
                             """,
                 Map.of("user_id", person.getId()),
-//                new Object[]{person.getId()},
                 BeanPropertyRowMapper.newInstance(UserMeResponseDTO.class)
         );
     }
@@ -102,7 +99,6 @@ public class UserManager {
                         WHERE  ads.removed = true
                             """,
                 Map.of(),
-//                new Object[]{},
                 BeanPropertyRowMapper.newInstance(UserMeResponseDTO.class)
         );
     }
@@ -115,7 +111,6 @@ public class UserManager {
                         WHERE id = :id AND removed = false
                         """,
                 Map.of("id", id),
-//                new Object[]{id},
                 BeanPropertyRowMapper.newInstance(UserGetByIdResponseDTO.class)
         );
     }
