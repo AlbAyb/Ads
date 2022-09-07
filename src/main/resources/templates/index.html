@@ -51,8 +51,8 @@
                             <input type="submit" value="Выход"/>
                             <br>
                             <br>
-                            <h3><a th:if="${#authorization.getAuthentication().name != 'ADMIN'}" href="/me">Личный кабинет</a></h3>
-                            <h3><a th:if="${#authorization.getAuthentication().name == 'ADMIN'}" href="/admin">Личный кабинет</a></h3>
+                            <h3><a th:if="${#authorization.getAuthentication().name != 'admin'}" href="/me">Личный кабинет</a></h3>
+                            <h3><a th:if="${#authorization.getAuthentication().name == 'admin'}" href="/admin">Личный кабинет</a></h3>
 
 
                         </form>

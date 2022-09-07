@@ -29,14 +29,12 @@ public class AdminManager {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<UserGetAllResponseDTO> getAll(int limit, int offset) {
-        UserGetAllResponseDTO dto = new UserGetAllResponseDTO();
-
         return template.query(
                 //language=PostgreSQL
                 """
                         SELECT u.id, u.username, u.role, u.removed, count(ads.id) userId FROM ads
                         RIGHT JOIN users u on u.id = ads.user_id
-                        WHERE u.username != 'ADMIN'
+                        WHERE u.username != 'admin'
                         GROUP BY u.id
                         ORDER BY id
                         LIMIT :limit OFFSET :offset

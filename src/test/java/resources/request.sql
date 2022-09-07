@@ -503,7 +503,9 @@ SELECT ads.id, ads.removed, ads.title, ads.description, ads.price, ads.created, 
 FROM ads
          JOIN categories ON ads.categories_id = categories.id
          JOIN users ON ads.user_id = users.id
-WHERE ads.removed = false
+WHERE ads.removed = false;
+
+select * from categories
 
 
 
