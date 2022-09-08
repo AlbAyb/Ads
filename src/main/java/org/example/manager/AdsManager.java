@@ -33,7 +33,7 @@ public class AdsManager {
                         JOIN categories ON ads.categories_id = categories.id 
                         JOIN users ON ads.user_id = users.id 
                         WHERE ads.removed = false AND users.removed = false
-                        ORDER BY price
+                        ORDER BY created
                         LIMIT :limit OFFSET :offset
                                                 """,
                 Map.of(

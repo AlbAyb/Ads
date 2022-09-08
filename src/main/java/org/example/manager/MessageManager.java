@@ -41,7 +41,6 @@ public class MessageManager {
                         LIMIT :limit OFFSET :offset
                         """,
                 Map.of("id", person.getId(),
-//                        "user_add", person.getId(),
                         "limit", limit,
                         "offset", offset),
                 BeanPropertyRowMapper.newInstance(MessageGetAllResponseDTO.class)

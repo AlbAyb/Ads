@@ -30,7 +30,6 @@ public class MessageController {
         this.userManager = userManager;
     }
 
-    //http://localhost:8080/message.getAll?limit=50&offset=0
     @GetMapping("/meMessage")
     public String getAll(Model model) {
         model.addAttribute("all", manager.getAll(50, 0));

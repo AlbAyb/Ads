@@ -19,15 +19,14 @@ import java.util.Map;
 //@Service
 public class AdminManager {
     private NamedParameterJdbcTemplate template;
+
     @Autowired
     public AdminManager(NamedParameterJdbcTemplate template) {
         this.template = template;
     }
 
 
-
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<UserGetAllResponseDTO> getAll(int limit, int offset) {
         return template.query(
                 //language=PostgreSQL

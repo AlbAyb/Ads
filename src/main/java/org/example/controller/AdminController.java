@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.UserGetAllResponseDTO;
 import org.example.manager.AdminManager;
 import org.example.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -24,7 +27,16 @@ public class AdminController {
     //http://localhost:8080/admin
     @GetMapping("/admin")
     public String getAll(Model model){
-        model.addAttribute("person", manager.getAll(50, 0));
+        List<UserGetAllResponseDTO> all = manager.getAll(50, 0);
+        model.addAttribute("person", all);
+        for (UserGetAllResponseDTO dto : all) {
+            Boolean removed = dto.getRemoved();
+            if(removed.equals(false)){
+                dto.setDel("активен");
+            }else {
+                dto.setDel("не активен");
+            }System.out.println(dto.getDel());
+        }
         return "/admin";
     }
 

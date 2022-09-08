@@ -460,9 +460,12 @@ FROM message
 returning id;
 
 
-SELECT *
-FROM message
-ORDER BY id;
+SELECT outgoing, user_id, user_add, u.username
+FROM message m
+JOIN users u on u.id = m.user_add
+JOIN users u2 on u2.id = m.user_id
+WHERE (m.user_add = 1 OR m.user_id != 1) AND outgoing = true OR (m.user_id = 1 OR m.user_add != 1) AND outgoing = true
+ORDER BY created;
 
 SELECT m.id, m.user_add, m.user_id, m.text, u.username sender
 FROM message m
@@ -505,7 +508,7 @@ FROM ads
          JOIN users ON ads.user_id = users.id
 WHERE ads.removed = false;
 
-select * from categories
+
 
 
 

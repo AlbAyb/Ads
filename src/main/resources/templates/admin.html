@@ -24,7 +24,7 @@
             <td th:text="${el.getUsername}"/>
             <td th:text="${el.getRole()}"/>
             <td th:text="${el.getUserId}"/>
-            <td  th:text="${el.getRemoved()}"/>
+            <td  th:text="${el.getDel}"/>
 
             <td>
                 <a th:href="@{/user/{id}(id=${el.getId()})}">views</a>
@@ -39,7 +39,7 @@
                     <input type="submit" value="Разблокировать"/>
                 </form>
             </td>
-            <td th:if="${el.getRemoved} == 't'" bgcolor="#ff4500"/>
+            <td th:if="${el.getDel} == 'не активен'" bgcolor="#ff4500"/>
 
             <td >
                 <a th:href="@{/meMessageId/{id}(id=${el.getId()})}">Сообщение</a>

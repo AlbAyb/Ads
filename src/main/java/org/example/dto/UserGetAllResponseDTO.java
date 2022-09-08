@@ -14,6 +14,10 @@ public class UserGetAllResponseDTO {
     private String username;
     private String role;
     private long userId;
-    private String removed;
+    private String del;
+    private Boolean removed;
+
+
+
 
 }
