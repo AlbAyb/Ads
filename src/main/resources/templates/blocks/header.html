@@ -1,0 +1,29 @@
+<div class="head" th:fragment="headers">
+    <div class="up d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow p-2 mb-sm-4">
+        <a href="/ads" class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">ADS</span>
+        </a>
+
+        <nav th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : ${false}"
+             class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <span th:case="${false}">
+<!--                me-3 py-2 text-dark text-decoration-none-->
+            <a class="href" href="/ads">Главная</a>
+            <a class="href" href="/registration">Регистрация</a>
+            <a class="btn btn-outline-dark" href="/login">Вход</a>
+        </span>
+            <form th:case="${true}" th:action="@{/logout}" name="out" method="post">
+                <a class="btn btn-outline-dark"
+                th:if="${#authorization.getAuthentication().name != 'admin'}" href="/me">Личный кабинет</a>
+                <a class="btn btn-outline-dark"
+                th:if="${#authorization.getAuthentication().name == 'admin'}" href="/admin">Личный кабинет</a>
+                <input class="btn btn-outline-dark" type="submit" value="Выход">
+            </form>
+        </nav>
+    </div>
+</div>
+
+
+
+
+

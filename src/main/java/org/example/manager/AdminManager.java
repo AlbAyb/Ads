@@ -26,7 +26,7 @@ public class AdminManager {
     }
 
 
-    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<UserGetAllResponseDTO> getAll(int limit, int offset) {
         return template.query(
                 //language=PostgreSQL

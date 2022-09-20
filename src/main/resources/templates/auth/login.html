@@ -2,36 +2,81 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <title>auth</title>
+    <style>
+        .head { /* header.html*/
+            font-family: Verdana;
+            font-weight: normal;
+            font-size: 18px;
+            background-color: #F2F2F2;
+        }
+        .up {
+            shadow: #989477;
+        }
+        .href {
+            display: inline-block;
+            color: #000000; /* Цвет обычной ссылки */
+            line-height: 1;
+            text-decoration: none; /* Убираем подчеркивание */
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        .href:after {
+            background-color: #000000; /* Цвет линии при наведении на нее курсора мыши */
+            display: block;
+            content: "";
+            height: 2px; /* Высота линии */
+            width: 0%;
+            -webkit-transition: width .3s ease-in-out;
+            -moz--transition: width .3s ease-in-out;
+            transition: width .3s ease-in-out;
+        }
+
+        .href:hover:after,
+        .href:focus:after {
+            width: 100%;
+
+        }
+
+        .href:hover {
+            color: #2d2d2d;
+        }
+        /*----------------------------------------------------------------------*/
+        .auth {
+            margin: 30px 40% auto 40%;
+        }
+
+        .text-center {
+            background: #f5f5f5;
+        }
+        .label {
+            font-size: 20px;
+            width: 100px;
+            margin-left: 15px;
+        }
+    </style>
 </head>
-<body>
-<div>
+<header th:insert="blocks/header :: headers"></header>
+
+<body class="text-center">
+<div class="auth">
     <form action="/process_login" method="post">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <table>
-            <tr>
-                <td>Логин:</td>
-                <td>
-                    <input type="text" name="username"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Пароль:</td>
-                <td>
-                    <input type="password" name="password"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Войти">
-                </td>
-            </tr>
-            <div th:if="${param.error}" style="color: red">Неправильные имя или пароль</div>
-        </table>
-    </form>
-    <br>
-    <form th:action="@{/registration}" target="_blank">
-        <button>Регистрация</button>
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" label="login">
+
+        <div class="form-floating">
+            <input class="form-control" type="text" name="username" />
+            <label class="label">Логин</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password" />
+            <label class="label">Пароль</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Войти</button>
+        <p class="mt-5 mb-3 text-muted">© 2022</p>
     </form>
 </div>
 </body>
