@@ -23,7 +23,7 @@ public class AdsController {
     //http://localhost:8080/ads?limit=50&offset=0
     @GetMapping("/ads")
     public String getAll(Model model) {
-        model.addAttribute("ads", manager.getAll(3, 0));
+        model.addAttribute("ads", manager.getAll(50, 0));
         model.addAttribute("categories", categoriesManager.getAll());
         return "index";
     }

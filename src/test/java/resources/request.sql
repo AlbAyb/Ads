@@ -508,6 +508,10 @@ FROM ads
          JOIN users ON ads.user_id = users.id
 WHERE ads.removed = false;
 
+SELECT ads.id, ads.removed, ads.title, ads.description, ads.price, ads.created, c.name FROM ads
+JOIN categories c on c.id = ads.categories_id
+WHERE c.id = 3
+
 
 
 

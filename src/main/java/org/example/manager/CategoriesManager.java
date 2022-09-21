@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.example.dto.AdsGetAllResponseDTO;
 import org.example.dto.CategoriesGetAllResponseDTO;
+import org.example.dto.CategoriesGetByIdResponseDTO;
+import org.example.dto.UserGetByIdResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -33,5 +35,19 @@ public class CategoriesManager {
                 Map.of(),
                 BeanPropertyRowMapper.newInstance(CategoriesGetAllResponseDTO.class)
         );
+    }
+    public List<CategoriesGetByIdResponseDTO> getByIdCategories(long id) {
+        return template.query(
+                // language=PostgreSQL
+                """
+                        SELECT ads.id, ads.removed, ads.title, ads.description, ads.price, ads.created, c.name FROM ads
+                        JOIN categories c on c.id = ads.categories_id
+                        WHERE c.id = :id
+                        ORDER BY created
+                            """,
+                Map.of("id", id),
+                BeanPropertyRowMapper.newInstance(CategoriesGetByIdResponseDTO.class)
+        );
+
     }
 }

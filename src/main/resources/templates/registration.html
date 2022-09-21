@@ -3,60 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <link rel="stylesheet" type="text/css" href="../css/style.css"/>-->
+    <!--    <link rel="stylesheet" type="text/css" href="../css/style.css"/>-->
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <title>registration</title>
     <style>
         .reg {
-            margin:0 15% 0 35%; width:50%;
+            margin: 0 15% 0 35%;
+            width: 50%;
         }
+
         .inp {
-            margin:0 19% 0 31%;
-            width:61%;
+            margin: 0 19% 0 31%;
+            width: 61%;
         }
+
         td {
             font-family: Snell Roundhand, cursive;
             font-weight: normal;
             font-size: 18px;
         }
+
         .body {
             background-color: #caeed1;
         }
+
+        /*------------------------------------------------------------------*/
+        .head { /* header.html*/
+            font-family: Verdana;
+            font-weight: normal;
+            font-size: 18px;
+            background-color: #F2F2F2;
+        }
+
+        .up {
+            shadow: #989477;
+        }
+
+        .href {
+            display: inline-block;
+            color: #000000; /* Цвет обычной ссылки */
+            line-height: 1;
+            text-decoration: none; /* Убираем подчеркивание */
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        .href:after {
+            background-color: #000000; /* Цвет линии при наведении на нее курсора мыши */
+            display: block;
+            content: "";
+            height: 2px; /* Высота линии */
+            width: 0%;
+            -webkit-transition: width .3s ease-in-out;
+            -moz--transition: width .3s ease-in-out;
+            transition: width .3s ease-in-out;
+        }
+
+        .href:hover:after,
+        .href:focus:after {
+            width: 100%;
+
+        }
+
+        .href:hover {
+            color: #2d2d2d;
+        }
+
+        /*----------------------------------------------------------------------*/
+        .auth {
+            margin: 30px 40% auto 40%;
+        }
+
+        .text-center {
+            background: #f5f5f5;
+        }
+
+        .label {
+            font-size: 20px;
+            width: 100px;
+            margin-left: 15px;
+        }
     </style>
 </head>
-<body class="body">
-<div class="reg mt-5">
-        <form th:action="@{/registration}" th:method="POST" th:object="${person}">
-            <table>
-                <tbody>
-                <tr >
-                    <td>Логин:</td>
-                    <td >
-                        <input class="inp1 rounded-1 shadow-sm" type="text" th:field="*{username}" id="login"/>
-                    </td>
-                    <td>
-                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name error</p>
-                    </td>
-                </tr>
-                <tr >
-                    <td>Пароль:</td>
-                    <td >
-                        <input class="inp1 rounded-1 shadow-sm mt-1" type="password" th:field="*{password}" id="password"/>
-                    </td>
-                    <td>
-                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input class="inp rounded-1 shadow mt-3" type="submit" value="Зарегестрироваться">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </form>
-
+<body class="text-center">
+<header th:insert="blocks/header :: headers"></header>
+<div class="auth">
+    <form th:action="@{/registration}" th:method="POST" th:object="${person}">
+        <div class="form-floating">
+            <input class="form-control" type="text" th:field="*{username}"/>
+            <label class="label">Логин</label>
+            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name error</p>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" th:field="*{password}"/>
+            <label class="label">Пароль</label>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Зарегестрироваться</button>
+        <p class="mt-5 mb-3 text-muted">© 2022</p>
+    </form>
 </div>
 </body>
 </html>
