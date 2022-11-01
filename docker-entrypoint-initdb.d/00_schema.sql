@@ -33,7 +33,6 @@ CREATE TABLE message
     user_add BIGINT REFERENCES users (id),
     user_id  BIGINT REFERENCES users (id),
     outgoing BOOLEAN
-
     --ads_id   BIGINT REFERENCES ads (id)
 );
 

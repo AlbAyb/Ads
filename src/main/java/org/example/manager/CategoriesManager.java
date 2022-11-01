@@ -42,7 +42,7 @@ public class CategoriesManager {
                 """
                         SELECT ads.id, ads.removed, ads.title, ads.description, ads.price, ads.created, c.name FROM ads
                         JOIN categories c on c.id = ads.categories_id
-                        WHERE c.id = :id
+                        WHERE c.id = :id AND ads.removed = false
                         ORDER BY created
                             """,
                 Map.of("id", id),
